@@ -29,6 +29,7 @@ h1 {
 }
 
 .bg-image {
+    height: 910px;
     filter: blur(8px);
     -webkit-filter: blur(3px);
 }
@@ -45,3 +46,10 @@ h1 {
     /* width: 100%;  */
     /* padding: 20px; */
 }
+.wrap {
+            width: 30%;
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
