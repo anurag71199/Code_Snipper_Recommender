@@ -14,6 +14,7 @@ client = pymongo.MongoClient('mongodb+srv://all:Project1@ssdproject.gp7612k.mong
 db = client.get_database('ssdproject')
 user_collection = db.UserCredentials  #need to make variables for other collections and pass it. Refer to models.py imports
 
+user_collection2 = db.SnippetDetails #need to make variables for other collections and pass it. Refer to models.py imports
 
 
 def login_required(f):

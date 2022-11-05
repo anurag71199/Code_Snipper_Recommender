@@ -20,6 +20,9 @@ def login():
     print("reached login route")
     return User().login()
 
+@app.route('/uploadsnip', methods=['POST'])
+def upload():
+    return User().upload()
 
 # from flask import Blueprint, render_template, redirect, url_for, request, session
 # from passlib.hash import pbkdf2_sha256
