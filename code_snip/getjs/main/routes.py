@@ -3,6 +3,8 @@ from flask import Flask, render_template, redirect, url_for, request, session
 from app import app
 from main.models import User
 
+templist = []
+mylist = []
 
 @app.route('/register', methods=['POST'])
 def signup():
@@ -22,3 +24,21 @@ def login():
 @app.route('/uploadsnip', methods=['POST'])
 def upload():
     return 
+
+@app.route('/', methods=["POST"])
+def search():
+    print("route:index form submit")
+    global mylist
+    global templist
+    templist  = User().searchSnippet()
+    mylist  = templist[1]
+    # for i in mylist:
+    #         print(i,end="\n\n")
+    # searchsnip(mylist)
+    return User().searchSnippet()
+    # return render_template('/searchsnippet.html', results = mylist)
+
+@app.route('/searchsnippet')
+def searchsnip():
+    print(templist[0])
+    return render_template('/searchsnippet.html', results = mylist, len = len(mylist), searchby = templist[0])

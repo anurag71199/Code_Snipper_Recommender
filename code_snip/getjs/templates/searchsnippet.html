@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Search Snippet</title>
+        <!-- <script>
+            var jsonfile ={{results}};
+          </script> -->
+    </head>
+    <body>
+        <h1>Searched by : {{searchby}} </h1>
+        <br><br>
+        <ol>
+            {%for i in range(0, len)%}
+                <li>Name : {{results[i]['name']}}</li>
+                <br>Description : {{results[i]['description']}}
+                <br>Code : {{results[i]['code']}}
+                <br>Rating : {{results[i]['rating']}}
+                <br>Submitted by : {{results[i]['sub']}}
+                <br>Uploaded on : {{results[i]['update']}}
+                <br>
+            {%endfor%}
+              
+            </ol>
+    </body>
+</html>
