@@ -23,7 +23,7 @@ def login():
 
 @app.route('/uploadsnip', methods=['POST'])
 def upload():
-    return 
+    return User().upload()
 
 @app.route('/', methods=["POST"])
 def search():

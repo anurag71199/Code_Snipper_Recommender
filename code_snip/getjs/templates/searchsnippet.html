@@ -1,25 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Search Snippet</title>
-        <!-- <script>
+
+<head>
+    <title>Search Snippet</title>
+    <link rel="stylesheet" href="../static/search.css">
+    <!-- <script>
             var jsonfile ={{results}};
           </script> -->
-    </head>
-    <body>
-        <h1>Searched by : {{searchby}} </h1>
-        <br><br>
-        <ol>
-            {%for i in range(0, len)%}
-                <li>Name : {{results[i]['name']}}</li>
-                <br>Description : {{results[i]['description']}}
-                <br>Code : {{results[i]['code']}}
-                <br>Rating : {{results[i]['rating']}}
-                <br>Submitted by : {{results[i]['sub']}}
-                <br>Uploaded on : {{results[i]['update']}}
-                <br>
-            {%endfor%}
-              
+    <style>
+        body {
+            background-image: url("../static/profilebg.jpg");
+            color: black
+        }
+
+        ol {
+            background-color: #da5a5a49;
+        }
+
+        li {
+            color: rgb(52, 12, 85);
+            font-weight: 300;
+            font-size: medium;
+            text-decoration: underline;
+            text-shadow: #5e595957;
+        }
+
+        h1 {
+            color: red;
+        }
+
+        #grad1 {
+            background: rgb(247, 255, 0);
+            background: linear-gradient(90deg, rgba(247, 255, 0, 1) 4%, rgba(215, 227, 80, 1) 56%, rgba(0, 212, 255, 1) 100%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bo">
+        <div class="area">
+            <br><br>
+            <h1>SEARCHED BY : {{searchby}} </h1>
+            <br><br>
+            <ol>
+                <!-- <div> -->
+                {%for i in range(0, len)%}
+                <br><br>
+                <div id="grad1" style="position: relative;">
+                    <!-- <li></li> -->
+                    <div>
+                        <span style="float:left">
+                            <h2 style="margin-left: 15px; margin-top: 15px;">Name : <strong>{{results[i]['name']}}</strong></h2>
+                        </span>
+                        <span style="float:right">
+                            <h3 style="margin-right: 20px; margin-top: 15px;">Rating : {{results[i]['rating']}}</h3>
+                        </span>
+                    </div>
+                    <br><br>
+                    <br><br>
+                    <h3 style="margin-left: 15px;">Description : {{results[i]['description']}}</h3>
+                    <br>
+                    <br>
+                    <h3 style="margin-left: 15px;">Code : </h3>
+                    <br>
+
+                    <div class="container" style="background-color: white; width: 70%;height: 200px; margin: auto; border: 3px solid green;">
+                        <h3 style="margin-left: 30px; margin-top: 20px;">{{results[i]['code']}}</h3>
+                    </div>
+                    
+                    <br>
+                    <br>
+                    <h3 style="margin-left: 15px;">Submitted by : {{results[i]['sub']}}</h3>
+                    <br>
+                    <br>
+                    <h3 style="margin-left: 15px;">Uploaded on : {{results[i]['update']}}</h3>
+                    <br>
+                    <br>
+                </div>
+                {%endfor%}
+                <!-- </div> -->
             </ol>
-    </body>
+            <ul class="circles">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+
+            <ul class="circles">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+
 </html>
