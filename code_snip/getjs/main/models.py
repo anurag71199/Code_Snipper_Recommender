@@ -1,9 +1,9 @@
 #Main backend of the project. All the dealings with the database are defined here
 from flask import Flask, jsonify, request, session, redirect
 from passlib.hash import pbkdf2_sha256
-from app import user_collection #import the other collection variables here
+from app import user_collection, snippet_collection #import the other collection variables here
 import uuid
-
+import datetime
 
 class User:
 
@@ -69,3 +69,65 @@ class User:
             return self.start_session(user)
 
         return jsonify({"error": "Invalid credentials"}), 401
+
+    def upload(self):
+
+        name = request.form.get('snipname')
+        keywords = request.form.get('keywords')
+        arr =keywords.split(',')  
+        description = request.form.get('description')
+        code = request.form.get('code')
+        submitted_by = session['user']['username']#take logged in users name request.form.get('submitted_by')
+        upload_date =datetime.datetime.today()  #take todays date   request.form.get('upload_date')
+        # Create the user object
+        codesnip = {
+            "_id": uuid.uuid4().hex,
+            "Name": name,
+            "Keywords": arr,
+            "Description": description,
+            "Code": code,
+            "Rating": "0",
+            "Submitted_by": submitted_by,
+            "Upload_date": upload_date
+        }
+        print(codesnip)
+
+        if snippet_collection.insert_one(codesnip):
+            return jsonify({"error": "Upload successful"}), 200
+
+        return jsonify({"error": "Upload Unsuccessful"}), 400
+
+
+    def searchSnippet(self):
+
+        print("User.Inside seachSnippet()")
+        keyword = request.form.get('search')
+        # cursor = snippet_collection.find( { "Keywords": keyword} )
+        cursor = snippet_collection.find( { "Keywords": {'$regex':keyword}} )
+        # cursor = snippet_collection.find({'Keywords':{'$regex':'keyword'}})
+        # cursor = snippet_collection.find( { "Keywords": {regex : "son"}} )
+        deets = {}
+        results = []
+        for doc in cursor:
+            # print(doc)
+            # print(doc,end="\n\n")
+            deets['name'] = doc['Name']
+            deets['description'] = doc['Description']
+            deets['code'] = doc['Code']
+            deets['rating'] = doc['Rating']
+            deets['sub'] = doc['Submitted_by']
+            deets['update'] = doc['Upload_date']
+            results.append(deets.copy())
+            deets.clear()
+        retlist = []
+        retlist.append(keyword)
+        retlist.append(results)
+        # for i in results:
+        #     print(i,end="\n\n")
+        # if snippetDetails:
+        #     print snippetDetails
+        # return jsonify({'success': "Details fetched succesfully"}), 200
+        # return jsonify(results), 200
+        return retlist
+        
+        # return jsonify({"error": "Snippet fetch failed"}), 400

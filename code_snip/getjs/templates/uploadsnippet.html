@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../static/search2.css">
     <style>
         .gradient-custom {
             /* fallback for old browsers */
@@ -29,7 +30,7 @@
 </head>
 
 <body>
-    <section class="vh-100 gradient-custom">
+    <section class="vh-100 gradient-custom"  style="opacity: 0.8;">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-50">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5 w-75 h-100">
@@ -37,36 +38,7 @@
                         <div class="card-body p-5 text-center">
                             <h2 class="fw-bold mb-2 text-uppercase">UPLOAD SNIPPET</h2>
                                 <p class="text-white-50 mb-5">Upload JavaScript Code Snippet</p>
-                            <form>
-                                <!-- 2 column grid layout with text inputs for the first and last names -->
-                                <div class="row mb-4">
-                                  <div class="col">
-                                    <div class="form-outline">
-                                      <input type="text" id="form6Example1" class="form-control" />
-                                      <label class="form-label" for="form6Example1">First name</label>
-                                    </div>
-                                  </div>
-                                  <div class="col">
-                                    <div class="form-outline">
-                                      <input type="text" id="form6Example2" class="form-control" />
-                                      <label class="form-label" for="form6Example2">Last name</label>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="row mb-4">
-                                    <div class="col">
-                                      <div class="form-outline">
-                                        <input type="text" id="form6Example1" class="form-control" />
-                                        <label class="form-label" for="form6Example1">Email</label>
-                                      </div>
-                                    </div>
-                                    <div class="col">
-                                      <div class="form-outline">
-                                        <input type="text" id="form6Example2" class="form-control" />
-                                        <label class="form-label" for="form6Example2">Contact</label>
-                                      </div>
-                                    </div>
-                                  </div>
+                            <form name="upload_form">
                                   <hr>
                               
                                 <!-- Text input -->
@@ -77,13 +49,13 @@
                                 <div class="row mb-4">
                                     <div class="col">
                                       <div class="form-outline">
-                                        <input type="text" id="form6Example1" class="form-control" />
+                                        <input type="text" id="snipname" name ="snipname" class="form-control" />
                                         <label class="form-label" for="form6Example1">Code Snippet Name</label>
                                       </div>
                                     </div>
                                     <div class="col">
                                       <div class="form-outline">
-                                        <input type="text" id="form6Example2" class="form-control" />
+                                        <input type="text" id="keywords" name="keywords" class="form-control" />
                                         <label class="form-label" for="form6Example2">Keywords</label>
                                       </div>
                                     </div>
@@ -108,11 +80,11 @@
                               
                                 <!-- Message input -->
                                 <div class="form-outline mb-4">
-                                  <textarea class="form-control" id="form6Example7" rows="4"></textarea>
+                                  <textarea class="form-control" id="description" name="description" rows="4"></textarea>
                                   <label class="form-label" for="form6Example7">Description</label>
                                 </div>
                                 <div class="form-outline mb-4">
-                                  <textarea class="form-control" id="form6Example7" rows="4"></textarea>
+                                  <textarea class="form-control" id="code" name="code" rows="4"></textarea>
                                   <label class="form-label" for="form6Example7">Code</label>
                                 </div>
                               
@@ -124,7 +96,7 @@
                               
                                 <!-- Submit button -->
                                 <div class="mt-4 pt-2">
-                                    <input class="btn btn-outline-light btn-lg px-5" type="submit" value="Upload Snippet" />
+                                    <input class="btn btn-outline-light btn-lg px-5" type="submit" value="Submit" />
                                 </div>
                               </form>
 
@@ -141,5 +113,18 @@
         </div>
     </section>
 </body>
-
+<script src="/static/jquery.js"></script>
+<script src="/static/scripts.js"></script>
+<ul class="circles">
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+</ul>
 </html>

@@ -12,6 +12,7 @@
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="{{url_for('static', filename='stylesheet.css')}}" />
     <title>GETSJS Homepage</title>
+    <link rel="stylesheet" href="../static/search2.css">
 
 </head>
 
@@ -66,13 +67,13 @@
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <div class='product-holder'>
-                    <img class="d-block w-100 bg-cover bg-image" src="{{url_for('static', filename='yellowbg.jpg')}}"
+                    <img class="d-block w-100 bg-cover bg-image"  style="opacity: 0.8;"src="{{url_for('static', filename='yellowbg.jpg')}}"
                         alt="First slide">
                     <img src="{{url_for('static', filename='js.png')}}" alt="" class='plus-image'>
                     <div class="centered" style="color:rgb(14, 124, 47); font-family:Georgia, serif; font-size:4vw">
                         Code Snippet Recommender</div>
                         <div class="wrap">
-                            <form class="d-flex">
+                            <form name="index_form" class="d-flex">
                                 <input class="form-control me-2" name="search" id="search" type="search" placeholder="Look for Snippets by keywords"
                                     aria-label="Search">
                                 <button class="btn btn-primary" type="submit">Search</button>
@@ -108,5 +109,21 @@
         crossorigin="anonymous"></script>
         <script src="/static/jquery.js"></script>
         <script src="/static/scripts.js"></script>
+
+
+        <div class="area" >
+        <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+    </ul>
+    </div>
 </body>
 </html>

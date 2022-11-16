@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Search Snippet</title>
+       <link rel="stylesheet" href="../static/search.css">
+        <!-- <script>
+            var jsonfile ={{results}};
+          </script> -->
+          <style>
+            body{
+                background-image: url("../static/profilebg.jpg");
+                color:black
+            }
+            ol{
+                background-color: #da5a5a49;
+            }
+            li{
+                color: rgb(52, 12, 85);
+                font-weight: 300;
+                font-size: medium;
+                text-decoration: underline;
+                text-shadow: #5e595957;
+            }
+            h1{
+                color: red;
+            }
+          </style>
+    </head>
+    <body>
+        <div class="bo">
+        <div class="area" >
+            <br><br>
+            <h1>SEARCHED BY : {{searchby}} </h1>
+        <br><br>
+        <ol>
+            {%for i in range(0, len)%}
+            <div class="a">
+                <br><br>
+                <li>Name : {{results[i]['name']}}</li>
+                <br>Description : {{results[i]['description']}}
+                <br>Code : {{results[i]['code']}}
+                <br>Rating : {{results[i]['rating']}}
+                <br>Submitted by : {{results[i]['sub']}}
+                <br>Uploaded on : {{results[i]['update']}}
+                <br>
+            {%endfor%}
+            </div>
+            </ol>
+            <ul class="circles">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+            </ul>
+            
+            <ul class="circles">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+        </ul>
+    </div >
+</div>
+        
+    </body>
+</html>

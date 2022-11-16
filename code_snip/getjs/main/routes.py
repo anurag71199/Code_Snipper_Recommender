@@ -3,11 +3,12 @@ from flask import Flask, render_template, redirect, url_for, request, session
 from app import app
 from main.models import User
 
+templist = []
+mylist = []
 
 @app.route('/register', methods=['POST'])
 def signup():
     return User().signup()
-    # return render_template('signup.html')
 
 
 @app.route('/signout')
@@ -20,71 +21,24 @@ def login():
     print("reached login route")
     return User().login()
 
+@app.route('/uploadsnip', methods=['POST'])
+def upload():
+    return User().upload()
 
-# from flask import Blueprint, render_template, redirect, url_for, request, session
-# from passlib.hash import pbkdf2_sha256
+@app.route('/', methods=["POST"])
+def search():
+    print("route:index form submit")
+    global mylist
+    global templist
+    templist  = User().searchSnippet()
+    mylist  = templist[1]
+    # for i in mylist:
+    #         print(i,end="\n\n")
+    # searchsnip(mylist)
+    return User().searchSnippet()
+    # return render_template('/searchsnippet.html', results = mylist)
 
-# from getjs.extensions import mongo
-
-# main = Blueprint('main', __name__)
-
-
-# def start_session(user):
-#         del user['password']
-#         session['logged_in'] = True
-#         session['user'] = user
-#         return
-
-# @main.route('/')
-
-# def index():
-#     return render_template('index.html')
-
-# @main.route('/userhome')
-# def userhome():
-#     return render_template('userhome.html')
-
-# @main.route('/login')
-# def loginnav():
-#     return render_template('login.html')
-
-# @main.route('/login', methods=['POST'])
-# def login_user():
-#     error = None
-#     user_collection = mongo.db.users
-#     username = request.form.get('username')
-#     password = request.form.get('password')
-    
-#     user = user_collection.find_one({"username": username})
-#     if user and pbkdf2_sha256.verify(password, user['password']):
-#         start_session(user)
-#         return render_template('userhome.html')
-        
-#     else:
-#         print("mismatch creds")
-#     return redirect(url_for('main.index'))
-
-
-
-# @main.route('/register')
-# def regnav():
-#     return render_template('register.html')
-
-# @main.route('/register', methods=['POST'])
-# def add_user():
-#     error = None
-#     user_collection = mongo.db.users
-#     name = request.form.get('name')
-#     username = request.form.get('username')
-#     email = request.form.get('email')
-#     contact = request.form.get('contact')
-#     password = request.form.get('password')
-#     cpass = request.form.get('confirmpass')
-    
-#     if password != cpass:
-#         print("pass mismatch") #alert message redirected to register page
-#         error = 'Invalid credentials'
-#     else:
-#         passencrypt = pbkdf2_sha256.encrypt(password)
-#         user_collection.insert_one({'name': name, 'username': username, 'email': email, 'contact': contact, 'password': passencrypt, 'type': 'user'})
-#     return redirect(url_for('main.index'))
+@app.route('/searchsnippet')
+def searchsnip():
+    print(templist[0])
+    return render_template('/searchsnippet.html', results = mylist, len = len(mylist), searchby = templist[0])

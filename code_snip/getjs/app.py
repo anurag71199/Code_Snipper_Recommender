@@ -14,6 +14,7 @@ client = pymongo.MongoClient('mongodb+srv://all:Project1@ssdproject.gp7612k.mong
 db = client.get_database('ssdproject')
 user_collection = db.UserCredentials  #need to make variables for other collections and pass it. Refer to models.py imports
 
+snippet_collection = db.SnippetDetails #need to make variables for other collections and pass it. Refer to models.py imports
 
 
 def login_required(f):
@@ -32,6 +33,10 @@ from main import routes
 @app.route('/')
 def home():
     return render_template('index.html')
+
+# @app.route('/searchsnippet')
+# def searchsnip():
+#     return render_template('searchsnippet.html')
 
 @app.route('/login')
 def loginfunc():
