@@ -97,6 +97,43 @@ class User:
 
         return jsonify({"error": "Upload Unsuccessful"}), 400
 
+    def getUserSnippets(self):
+        
+            print("User.Inside getUserSnippets()")
+            # cursor = snippet_collection.find( { "Keywords": keyword} )
+            cursor = snippet_collection.find( { "Submitted_by": ""+ session['user']['username'] +"" } )
+            # cursor = snippet_collection.find({'Keywords':{'$regex':'keyword'}})
+            # cursor = snippet_collection.find( { "Keywords": {regex : "son"}} )
+            deets = {}
+            results = []
+            for doc in cursor:
+                # print(doc)
+                # print(doc,end="\n\n")
+                deets['name'] = doc['Name']
+                deets['description'] = doc['Description']
+                deets['code'] = doc['Code']
+                deets['rating'] = doc['Rating']
+                deets['sub'] = doc['Submitted_by']
+                deets['update'] = doc['Upload_date']
+                results.append(deets.copy())
+                deets.clear()
+            # retlist = []
+            # retlist.append(keyword)
+            # retlist.append(results)
+            # for i in results:
+            #     print(i,end="\n\n")
+            # if snippetDetails:
+            #     print snippetDetails
+            # return jsonify({'success': "Details fetched succesfully"}), 200
+            # return jsonify(results), 200
+            return results
+    
+    def getUserSnippetCount(self):
+
+        print("User.Inside getUserSnippetCount()")
+        # cursor = snippet_collection.find( { "Submitted_by": ""+ session['user']['username'] +"" } ).count()
+            
+        return len(list(snippet_collection.find( { "Submitted_by": ""+ session['user']['username'] +"" } )));
 
     def searchSnippet(self):
 

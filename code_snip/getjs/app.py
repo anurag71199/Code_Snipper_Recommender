@@ -57,11 +57,6 @@ def dashboard():
 def uploadsnip():
     return render_template('uploadsnippet.html')
 
-@app.route('/profile/')
-@login_required
-def profile():
-    return render_template('profile.html')
-
 
 #Ignore this code
 

@@ -42,3 +42,16 @@ def search():
 def searchsnip():
     print(templist[0])
     return render_template('/searchsnippet.html', results = mylist, len = len(mylist), searchby = templist[0])
+
+@app.route('/viewsnipFunc')
+def viewsnip():
+    UserSnippetList = []
+    UserSnippetList = User().getUserSnippets()
+
+    return render_template('/viewsnip.html', results = UserSnippetList, len = len(UserSnippetList))
+
+@app.route('/profile/')
+# @login_required
+def profile():
+    count = User().getUserSnippetCount()
+    return render_template('profile.html', snippetCount = count)

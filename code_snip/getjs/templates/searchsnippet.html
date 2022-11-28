@@ -7,33 +7,16 @@
     <!-- <script>
             var jsonfile ={{results}};
           </script> -->
-    <style>
-        body {
-            background-image: url("../static/profilebg.jpg");
-            color: black
+    <script>
+        function CopyToClipboard(id)
+        {
+            var code = document.getElementById(id);
+            code.select();
+            document.execCommand("copy");
+            console.log("Code coppied");
         }
-
-        ol {
-            background-color: #da5a5a49;
-        }
-
-        li {
-            color: rgb(52, 12, 85);
-            font-weight: 300;
-            font-size: medium;
-            text-decoration: underline;
-            text-shadow: #5e595957;
-        }
-
-        h1 {
-            color: red;
-        }
-
-        #grad1 {
-            background: rgb(247, 255, 0);
-            background: linear-gradient(90deg, rgba(247, 255, 0, 1) 4%, rgba(215, 227, 80, 1) 56%, rgba(0, 212, 255, 1) 100%);
-        }
-    </style>
+        // 110417
+    </script>
 </head>
 
 <body>
@@ -46,7 +29,7 @@
                 <!-- <div> -->
                 {%for i in range(0, len)%}
                 <br><br>
-                <div id="grad1" style="position: relative;">
+                <div id="grad1" style="position: relative; opacity: 0.5;">
                     <!-- <li></li> -->
                     <div>
                         <span style="float:left">
@@ -62,11 +45,13 @@
                     <br>
                     <br>
                     <h3 style="margin-left: 15px;">Code : </h3>
-                    <br>
 
-                    <div class="container" style="background-color: white; width: 70%;height: 200px; margin: auto; border: 3px solid green;">
-                        <h3 style="margin-left: 30px; margin-top: 20px;">{{results[i]['code']}}</h3>
-                    </div>
+                    <button style="margin-right: 30px; z-index: 10;" onclick="CopyToClipboard('code_'+{{i}})"> Copy </button>
+                    <br>
+                    <textarea style="margin-left: 100px; margin-top: 20px; width: 70%;height: 200px; margin: auto; border: 3px solid black; color: green; background-color:blanchedalmond; font-size:x-large;" id="code_{{i}}" readonly>{{results[i]['code']}}</textarea>
+                    <!-- <div class="container" style="background-color: white; width: 70%;height: 200px; margin: auto; border: 3px solid green;">
+                        <h3 style="margin-left: 30px; margin-top: 20px;" id='code_{{i}}'>{{results[i]['code']}}</h3>
+                    </div> -->
                     
                     <br>
                     <br>
