@@ -6,17 +6,31 @@
 }
 h1{
     text-align: center;
+    color: red;
 }
 
 body{
     font-family: 'Exo', sans-serif;
     color:white;
     height:100%;
+
+    background-image: url("profilebg.jpg");
+    color: black;
 }
 
 ol{
     margin: 20px;
     padding: 20px;
+
+    background-color: #da5a5a49;
+}
+
+li {
+    color: rgb(52, 12, 85);
+    font-weight: 300;
+    font-size: medium;
+    text-decoration: underline;
+    text-shadow: #5e595957;
 }
 
 .context {
@@ -48,6 +62,8 @@ ol{
     width: 100%;
     height: 100%;
     overflow: hidden;
+
+    z-index: -1;
 }
 
 .circles li {
@@ -136,6 +152,11 @@ ol{
     height: 150px;
     animation-delay: 0s;
     animation-duration: 11s;
+}
+
+#grad1 {
+    background: rgb(247, 255, 0);
+    background: linear-gradient(90deg, rgba(247, 255, 0, 1) 4%, rgba(215, 227, 80, 1) 56%, rgba(0, 212, 255, 1) 100%);
 }
 
 
