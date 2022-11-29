@@ -55,3 +55,16 @@ def viewsnip():
 def profile():
     count = User().getUserSnippetCount()
     return render_template('profile.html', snippetCount = count)
+
+@app.route('/searchall')
+def searchall():
+    print(templist[0])
+    return render_template('/searchall.html', results = mylist, len = len(mylist), searchby = templist[0])
+
+@app.route('/freqsearch')
+def freqsearch():
+    print("Entered")
+    freqlist = []
+    freqlist = User().freq_search()
+    modified_list = freqlist[:10]
+    return render_template('/freqsearch.html', modified_list = modified_list)

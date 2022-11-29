@@ -1,9 +1,13 @@
 #Main backend of the project. All the dealings with the database are defined here
 from flask import Flask, jsonify, request, session, redirect
 from passlib.hash import pbkdf2_sha256
-from app import user_collection, snippet_collection #import the other collection variables here
+from app import user_collection, snippet_collection, db #import the other collection variables here
 import uuid
 import datetime
+from operator import itemgetter
+
+### Global Variables ###
+searchkey = ""
 
 class User:
 
@@ -146,7 +150,7 @@ class User:
         deets = {}
         results = []
         for doc in cursor:
-            # print(doc)
+            print(doc)
             # print(doc,end="\n\n")
             deets['name'] = doc['Name']
             deets['description'] = doc['Description']
@@ -157,14 +161,55 @@ class User:
             results.append(deets.copy())
             deets.clear()
         retlist = []
+        newlist = []
+        newlist = sorted(results, key=itemgetter('rating'), reverse=False) #sorting based on rating
+
         retlist.append(keyword)
-        retlist.append(results)
-        # for i in results:
-        #     print(i,end="\n\n")
-        # if snippetDetails:
-        #     print snippetDetails
-        # return jsonify({'success': "Details fetched succesfully"}), 200
-        # return jsonify(results), 200
+        retlist.append(newlist)
         return retlist
-        
-        # return jsonify({"error": "Snippet fetch failed"}), 400
+    
+    def searchall(self):
+
+        print("User.Inside seachSnippet()")
+        global searchkey
+        keyword = searchkey
+        # cursor = snippet_collection.find( { "Keywords": keyword} )
+        cursor = snippet_collection.find( { "Keywords": {'$regex':keyword}} )
+        # cursor = snippet_collection.find({'Keywords':{'$regex':'keyword'}})
+        # cursor = snippet_collection.find( { "Keywords": {regex : "son"}} )
+        deets = {}
+        results = []
+        for doc in cursor:
+            # print(doc)
+            # print(doc,end="\n\n")
+            deets['name'] = doc['Name']
+            deets['description'] = doc['Description']
+            deets['code'] = doc['Code']
+            deets['rating'] = int(doc['Rating'])
+            deets['sub'] = doc['Submitted_by']
+            deets['update'] = doc['Upload_date']
+            results.append(deets.copy())
+            deets.clear()
+        retlist = []
+        newlist = sorted(results, key=itemgetter('rating'), reverse=True) #sorting based on rating
+        retlist.append(keyword)
+        retlist.append(newlist)
+        # retlist.append(results)
+        return retlist
+    
+    def freq_search(self):
+        print("entered models")
+        cursor = snippet_collection.find().limit(50)
+        deets = {}
+        results = []
+        for doc in cursor:
+            deets['name'] = doc['Name']
+            deets['description'] = doc['Description']
+            deets['code'] = doc['Code']
+            deets['rating'] = int(doc['Rating'])
+            deets['sub'] = doc['Submitted_by']
+            deets['update'] = doc['Upload_date']
+            results.append(deets.copy())
+            deets.clear()
+        newlist = sorted(results, key=itemgetter('rating'), reverse=True) #sorting based on rating
+        return newlist

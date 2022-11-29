@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Search Snippet</title>
+    <link rel="stylesheet" href="../static/search.css">
+          <script>
+            function CopyToClipboard(id) {
+                var code = document.getElementById(id);
+                code.select();
+                document.execCommand("copy");
+                console.log("Code coppied");
+            }
+            // 110417
+        </script>
+    <style>
+        body {
+            background-image: url("../static/profilebg.jpg");
+            color: black
+        }
+
+        ol {
+            background-color: #da5a5a49;
+        }
+
+        li {
+            color: rgb(52, 12, 85);
+            font-weight: 300;
+            font-size: medium;
+            text-decoration: underline;
+            text-shadow: #5e595957;
+        }
+
+        h1 {
+            color: red;
+        }
+
+        #grad1 {
+            background: rgb(247, 255, 0);
+            background: linear-gradient(90deg, rgba(247, 255, 0, 1) 4%, rgba(215, 227, 80, 1) 56%, rgba(0, 212, 255, 1) 100%);
+        }
+        .wrapper {
+            padding: 20px;
+            margin: 15px 0;
+            /* background-color: #0f9d58; */
+            background-color: white;
+            width: 70%;
+            height: 200px;
+            margin: auto;
+            border: 3px solid green;
+        }
+
+        textarea {
+            font-size: 20px;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            /* margin-left: 100px;  */
+            /* margin-top: 20px;  */
+            /* width: 70%; */
+            /* height: 200px;  */
+            /* margin: auto;  */
+            /* border: 3px solid black;  */
+            /* color: green;  */
+            /* background-color:blanchedalmond;  */
+            /* font-size:x-large; */
+        }
+
+        .copy-button {
+
+
+            display: inline-block;
+            outline: none;
+            cursor: pointer;
+            font-weight: 500;
+            border: 1px solid transparent;
+            border-radius: 3px;
+            height: 36px;
+            line-height: 34px;
+            font-size: 14px;
+            color: #ffffff;
+            background-color: #1300be;
+            transition: background-color 0.2s ease-in-out 0s, opacity 0.2s ease-in-out 0s;
+            padding: 0 18px;
+
+        }
+
+        .copy-button:hover {
+            color: #ffffff;
+            background-color: #0c0077;
+        }
+        .centerclass {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bo">
+        <div class="area">
+            <br><br>
+            <h1>Top Rated Searches </h1>
+            <br><br>
+            <ol>
+                <!-- <div> -->
+                {%for i in range(0, 10)%}
+                <br><br>
+                <div id="grad1" style="position: relative; opacity: 1;">
+                    <!-- <li></li> -->
+                    <div>
+                        <span style="float:left">
+                            <h2 style="margin-left: 15px; margin-top: 15px;">Name :
+                                <strong>{{modified_list[i]['name']}}</strong>
+                            </h2>
+                        </span>
+                        <span style="float:right">
+                            <h3 style="margin-right: 20px; margin-top: 15px;">Rating : {{modified_list[i]['rating']}}</h3>
+                        </span>
+                    </div>
+                    <br><br>
+                    <br>
+                    <h3 style="margin-left: 15px;">Description : {{modified_list[i]['description']}}</h3>
+                    <br>
+                    <h3 style="margin-left: 15px;">Code : </h3>
+
+                    <span style="float:right; margin-right:15%;">
+                        <button class="copy-button" onclick=" CopyToClipboard('code_'+{{i}})"> Copy</button>
+                    </span>
+                    <br>
+                    <br>
+                    <div class="wrapper">
+                        <textarea id="code_{{i}}" readonly>{{modified_list[i]['code']}}</textarea>
+                    </div>
+
+                    <br>
+                    <br>
+                    <h3 style="margin-left: 15px;">Submitted by : {{modified_list[i]['sub']}}</h3>
+                    <br>
+                    <h3 style="margin-left: 15px;">Uploaded on : {{modified_list[i]['update']}}</h3>
+                    <br>
+                </div>
+                {%endfor%}
+                <!-- </div> -->
+            </ol>
+            <ul class="circles">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+
+            <ul class="circles">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -7,81 +7,41 @@
     <!-- <script>
             var jsonfile ={{results}};
           </script> -->
-    <script>
-        function CopyToClipboard(id) {
-            var code = document.getElementById(id);
-            code.select();
-            document.execCommand("copy");
-            console.log("Code coppied");
-        }
-        // 110417
-    </script>
+          <script>
+            function CopyToClipboard(id) {
+                var code = document.getElementById(id);
+                code.select();
+                document.execCommand("copy");
+                console.log("Code coppied");
+            }
+            // 110417
+        </script>
     <style>
-        .centerclass {
-            text-align: center;
+        body {
+            background-image: url("../static/profilebg.jpg");
+            color: black
         }
 
-        .button_nores {
-            background-color: #f4511e;
-            border: none;
-            color: white;
-            padding: 16px 32px;
-            text-align: center;
-            font-size: 16px;
-            margin: 4px 2px;
-            opacity: 0.6;
-            transition: 0.3s;
-            display: inline-block;
-            text-decoration: none;
-            cursor: pointer;
+        ol {
+            background-color: #da5a5a49;
         }
 
-        .button_nores:hover {
-            opacity: 1
+        li {
+            color: rgb(52, 12, 85);
+            font-weight: 300;
+            font-size: medium;
+            text-decoration: underline;
+            text-shadow: #5e595957;
         }
 
-        .button {
-            /* display: inline-block; */
-            border-radius: 4px;
-            background-color: #f4511e;
-            border: none;
-            color: #FFFFFF;
-            text-align: center;
-            font-size: 18px;
-            padding: 20px;
-            width: 200px;
-            transition: all 0.5s;
-            cursor: pointer;
-            margin: 5px;
-            display: block;
-            margin: auto;
+        h1 {
+            color: red;
         }
 
-        .button span {
-            cursor: pointer;
-            display: inline-block;
-            position: relative;
-            transition: 0.5s;
+        #grad1 {
+            background: rgb(247, 255, 0);
+            background: linear-gradient(90deg, rgba(247, 255, 0, 1) 4%, rgba(215, 227, 80, 1) 56%, rgba(0, 212, 255, 1) 100%);
         }
-
-        .button span:after {
-            content: '\00bb';
-            position: absolute;
-            opacity: 0;
-            top: 0;
-            right: -20px;
-            transition: 0.5s;
-        }
-
-        .button:hover span {
-            padding-right: 25px;
-        }
-
-        .button:hover span:after {
-            opacity: 1;
-            right: 0;
-        }
-
         .wrapper {
             padding: 20px;
             margin: 15px 0;
@@ -132,13 +92,8 @@
             color: #ffffff;
             background-color: #0c0077;
         }
-
-        .like {
-            width: 30px;
-            height: 30px;
-            /* background-image: url(../static/like-before.png) no-repeat; */
-            margin-right: 30px;
-            /* margin: 50px; */
+        .centerclass {
+            text-align: center;
         }
     </style>
 </head>
@@ -147,23 +102,11 @@
     <div class="bo">
         <div class="area">
             <br><br>
-            <h1>SEARCHED FOR : {{searchby}} </h1>
+            <h1>All results for : {{searchby}} </h1>
             <br><br>
             <ol>
                 <!-- <div> -->
-                {% if len == 0 %}
-                <div class="centerclass">
-                    <img src="{{url_for('static', filename='noresult.png')}}" alt="Noresultimage">
-                    <br><br><br><br>
-                    <h1>Sorry! We don't have any snippets related to that search</h1>
-                    <br>
-                    <h2>Check out some of our top rated Snippets</h2>
-                    <br><br>
-                    <a class="button_nores" href="{{ url_for('freqsearch') }}">View Snippets</a>
-
-                </div>
-                {% else %}
-                {%for i in range(0, 6)%}
+                {%for i in range(0, len)%}
                 <br><br>
                 <div id="grad1" style="position: relative; opacity: 1;">
                     <!-- <li></li> -->
@@ -200,30 +143,9 @@
                     <h3 style="margin-left: 15px;">Submitted by : {{results[i]['sub']}}</h3>
                     <br>
                     <h3 style="margin-left: 15px;">Uploaded on : {{results[i]['update']}}</h3>
-                    <span style="float:right">
-                        <a href="{{url_for('static', filename='like-before.png')}}">
-                            <img src="{{url_for('static', filename='like-before.png')}}" class="like"
-                                onmouseover="this.src=`{{url_for('static', filename='like-after.png')}}`;"
-                                onmouseout="this.src=`{{url_for('static', filename='like-before.png')}}`;">
-                        </a>
-                        <a href="{{url_for('static', filename='dislike-before.png')}}">
-                            <img src="{{url_for('static', filename='dislike-before.png')}}" class="like"
-                                onmouseover="this.src=`{{url_for('static', filename='dislike-after.png')}}`;"
-                                onmouseout="this.src=`{{url_for('static', filename='dislike-before.png')}}`;">
-                        </a>
-                    </span>
-                    <br>
                     <br>
                 </div>
                 {%endfor%}
-                <br><br>
-                {% if len > 6%}
-                <div class="col-md-12 text-center">
-                    <a href="{{ url_for('searchall') }}" class="button" style="vertical-align:middle"><span>View More
-                        </span></a>
-                </div>
-                {% endif%}
-                {% endif%}
                 <!-- </div> -->
             </ol>
             <ul class="circles">
